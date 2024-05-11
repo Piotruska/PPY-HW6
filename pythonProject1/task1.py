@@ -17,7 +17,7 @@ def get_current_exchange_rate(currency):
             if 'rates' in data:
                 return data['rates'][0]['mid']
         except requests.exceptions.HTTPError as e:
-            print(f"HTTP Error ({e.response.status_code}): {e.response.reason}")
+            print(f"HTTP Error in table {table} ({e.response.status_code}): {e.response.reason}")
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
     print("Error: Unable to fetch current exchange rate. Please check your input.")
@@ -66,7 +66,7 @@ def get_exchange_rate_for_period(currency, start_date, end_date):
                 rates = [(datetime.strptime(rate['effectiveDate'], '%Y-%m-%d').date(), rate['mid']) for rate in data['rates']]
                 return rates
         except requests.exceptions.HTTPError as e:
-            print(f"HTTP Error ({e.response.status_code}): {e.response.reason}")
+            print(f"HTTP Error in table {table} ({e.response.status_code}): {e.response.reason}")
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
     print("Error: Unable to fetch exchange rates. Please check your input.")
